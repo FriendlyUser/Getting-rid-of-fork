@@ -2,12 +2,11 @@ sudo: true
 language: go
 
 go:
-  - 1.10.x
-  - 1.11.x
   - 1.12.x
 
 before_install:
-  - sudo apt update -y && sudo apt install ffmpeg
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media/+files/ffmpeg_3.3.3~trusty2_amd64.deb ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i ffmpeg_3.3.3~trusty2_amd64.deb ; fi
   - ffmpeg -version || true
   - export GOPATH=$PWD/go-get-youtube
   - go get github.com/knadh/go-get-youtube
@@ -19,6 +18,7 @@ script:
   # 05-20-2019
   # Test Video
   - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3
+  - ls
 
 # "GCS Interoperable Access Key ID"
 # "GCS Interoperable Access Secret"
@@ -27,5 +27,6 @@ deploy:
   access_key_id: $GCS_IAK_ID 
   secret_access_key: $GCS_IAS 
   bucket: "GCS Bucket"
+  local_dir: cait-music
   skip_cleanup: true
   acl: public-read
