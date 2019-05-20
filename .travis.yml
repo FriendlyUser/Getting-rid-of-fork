@@ -1,0 +1,31 @@
+sudo: true
+language: go
+
+go:
+  - 1.10.x
+  - 1.11.x
+  - 1.12.x
+
+before_install:
+  - sudo apt update -y && sudo apt install ffmpeg
+  - ffmpeg -version || true
+  - export GOPATH=$PWD/go-get-youtube
+  - go get github.com/knadh/go-get-youtube
+  - cd go-get-youtube/bin
+  - go get -v golang.org/x/lint/golint
+
+script:
+  # Add more links later and commet out
+  # 05-20-2019
+  # Test Video
+  - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3
+
+# "GCS Interoperable Access Key ID"
+# "GCS Interoperable Access Secret"
+deploy:
+  provider: gcs
+  access_key_id: $GCS_IAK_ID 
+  secret_access_key: $GCS_IAS 
+  bucket: "GCS Bucket"
+  skip_cleanup: true
+  acl: public-read
