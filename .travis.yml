@@ -18,8 +18,9 @@ script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3
+  - ./go-get-youtube -id=5vheNbQlsyU -itag 18 -rename -mp3
   - ls
+  - chmod +x mv_files.sh && mv_files.sh
 
 # "GCS Interoperable Access Key ID"
 # "GCS Interoperable Access Secret"
