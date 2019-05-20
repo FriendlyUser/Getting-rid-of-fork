@@ -2,8 +2,9 @@
 
 # Make this a parameter later
 mkdir cait_music
+ls
 echo "Starting to grab files"
-find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' file; do
+find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' file;
  do
    filename=$(basename -- "$fullfile")
    extension="${filename##*.}"
