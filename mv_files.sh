@@ -3,7 +3,7 @@
 # Make this a parameter later
 mkdir cait_music
 echo "Starting to grab files"
-for fullname in $(find -type f -name "*.mp4")
+find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' file; do
  do
    filename=$(basename -- "$fullfile")
    extension="${filename##*.}"
