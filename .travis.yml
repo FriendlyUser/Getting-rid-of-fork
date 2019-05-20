@@ -20,8 +20,8 @@ script:
   # 05-20-2019
   # Test Video
   - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
-  - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
-  - ./go-get-youtube -id=cN_DpYBzKso -itag 34 -rename -mp3 || true
+  - ./go-get-youtube -id=ROQj_ZVZgfg -itag 18 -rename -mp3 || true
+  - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3 || true
   - ./go-get-youtube -id=fZPgnFHeG3M -itag 36 -rename -mp3 || true
   - ./go-get-youtube -id=fZPgnFHeG3M -itag 37 -rename -mp3 || true
   - ./go-get-youtube -id=fZPgnFHeG3M -itag 38 -rename -mp3 || true
