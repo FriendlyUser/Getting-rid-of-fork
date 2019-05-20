@@ -4,7 +4,7 @@
 mkdir cait_music
 ls
 echo "Starting to grab files"
-find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' file;
+find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' fullfile;
  do
    filename=$(basename -- "$fullfile")
    extension="${filename##*.}"
@@ -17,3 +17,4 @@ find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' file;
    mv "${mp3_file}" cait_music || true
    mv $fullname cait_music
 done
+ls
