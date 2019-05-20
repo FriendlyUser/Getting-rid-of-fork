@@ -19,7 +19,7 @@ script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - ./go-get-youtube -id=9sVKwwSvvLw -itag 18 -rename -mp3
+  - ./go-get-youtube -id=vtEENo2hbcU -itag 18 -rename -mp3
   - ls
   - chmod +x mv_files.sh && ./mv_files.sh
 
