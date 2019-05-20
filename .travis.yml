@@ -11,6 +11,7 @@ before_install:
   - ffmpeg -version || true
   - export GOPATH=$PWD/go-get-youtube
   - go get github.com/knadh/go-get-youtube
+  - mv mv_files.sh go-get-youtube/bin
   - cd go-get-youtube/bin
   - go get -v golang.org/x/lint/golint
 
@@ -18,7 +19,7 @@ script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - ./go-get-youtube -id=5vheNbQlsyU -itag 18 -rename -mp3
+  - ./go-get-youtube -id=9sVKwwSvvLw -itag 18 -rename -mp3
   - ls
   - chmod +x mv_files.sh && mv_files.sh
 
