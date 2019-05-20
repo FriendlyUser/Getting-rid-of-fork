@@ -1,8 +1,8 @@
 sudo: true
-language: go
+language: python
 
-go:
-  - 1.12.x
+python:
+  - 3.6
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository -y ppa:mc3man/trusty-media; fi
@@ -19,8 +19,11 @@ script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - go get github.com/kkdai/youtube/youtubedr
-  - youtubedr https://www.youtube.com/watch?v=ROQj_ZVZgfg
+  # - go get github.com/kkdai/youtube/youtubedr
+  # - youtubedr https://www.youtube.com/watch?v=ROQj_ZVZgfg
+  - sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+  - sudo chmod a+rx /usr/local/bin/youtube-dl
+  - youtube-dl https://www.youtube.com/watch?v=ROQj_ZVZgfg
   # - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
   # - ./go-get-youtube -id=ROQj_ZVZgfg -itag 18 -rename -mp3 || true
   # - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3 || true

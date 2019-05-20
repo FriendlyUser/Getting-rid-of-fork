@@ -3,7 +3,7 @@
 # Make this a parameter later
 mkdir cait_music
 echo "Starting to grab files"
-for fullfile in *.mp4
+for fullfile in *.mp3
  do
    filename=$(basename -- "$fullfile")
    extension="${filename##*.}"
