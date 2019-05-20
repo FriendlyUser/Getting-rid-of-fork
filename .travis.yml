@@ -9,23 +9,25 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y ffmpeg; fi
   - ffmpeg -version || true
-  - export GOPATH=$PWD/go-get-youtube
-  - go get github.com/knadh/go-get-youtube
-  - mv mv_files.sh go-get-youtube/bin
-  - cd go-get-youtube/bin
-  - go get -v golang.org/x/lint/golint
+  # - export GOPATH=$PWD/go-get-youtube
+  # - go get github.com/knadh/go-get-youtube
+  # - mv mv_files.sh go-get-youtube/bin
+  # - cd go-get-youtube/bin
+  # - go get -v golang.org/x/lint/golint
 
 script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
-  - ./go-get-youtube -id=ROQj_ZVZgfg -itag 18 -rename -mp3 || true
-  - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3 || true
-  - ./go-get-youtube -id=fZPgnFHeG3M -itag 36 -rename -mp3 || true
-  - ./go-get-youtube -id=fZPgnFHeG3M -itag 37 -rename -mp3 || true
-  - ./go-get-youtube -id=fZPgnFHeG3M -itag 38 -rename -mp3 || true
-  - ls
+  - go get github.com/kkdai/youtube/youtubedr
+  - youtubedr https://www.youtube.com/watch?v=ROQj_ZVZgfg
+  # - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
+  # - ./go-get-youtube -id=ROQj_ZVZgfg -itag 18 -rename -mp3 || true
+  # - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3 || true
+  # - ./go-get-youtube -id=fZPgnFHeG3M -itag 36 -rename -mp3 || true
+  # - ./go-get-youtube -id=fZPgnFHeG3M -itag 37 -rename -mp3 || true
+  # - ./go-get-youtube -id=fZPgnFHeG3M -itag 38 -rename -mp3 || true
+  # - ls
   - chmod +x mv_files.sh && ./mv_files.sh
 
 # "GCS Interoperable Access Key ID"
