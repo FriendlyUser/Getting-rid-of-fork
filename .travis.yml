@@ -24,6 +24,7 @@ script:
   - sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
   - sudo chmod a+rx /usr/local/bin/youtube-dl
   - youtube-dl https://www.youtube.com/watch?v=ROQj_ZVZgfg --format mp4
+  - ls
   # - ./go-get-youtube -id=fZPgnFHeG3M -rename -mp3 || true
   # - ./go-get-youtube -id=ROQj_ZVZgfg -itag 18 -rename -mp3 || true
   # - ./go-get-youtube -id=cN_DpYBzKso -itag 18 -rename -mp3 || true
