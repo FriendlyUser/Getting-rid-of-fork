@@ -19,12 +19,12 @@ script:
   # Add more links later and commet out
   # 05-20-2019
   # Test Video
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 18 -rename -mp3 || true
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 22 -rename -mp3 || true
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 34 -rename -mp3 || true
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 36 -rename -mp3 || true
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 37 -rename -mp3 || true
-  - ./go-get-youtube -id=cz0qhCWl1o4 -itag 38 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 18 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 22 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 34 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 36 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 37 -rename -mp3 || true
+  - ./go-get-youtube -id=fZPgnFHeG3M -itag 38 -rename -mp3 || true
   - ls
   - chmod +x mv_files.sh && ./mv_files.sh
 
