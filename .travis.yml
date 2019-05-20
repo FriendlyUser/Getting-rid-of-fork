@@ -21,7 +21,7 @@ script:
   # Test Video
   - ./go-get-youtube -id=9sVKwwSvvLw -itag 18 -rename -mp3
   - ls
-  - chmod +x mv_files.sh && mv_files.sh
+  - chmod +x mv_files.sh && ./mv_files.sh
 
 # "GCS Interoperable Access Key ID"
 # "GCS Interoperable Access Secret"
