@@ -17,10 +17,12 @@ find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' fullfile;
    ffmpeg -y -loglevel quiet -i "$fullfile" -vn "$mp3_file" 
    filename2="${f1##*/}" 
    echo ${filename2}        
-   mv "${mp3_file}" cait_music || true
-   mv "{$fullname}" cait_music || true
+   mv "$mp3_file" cait_music || true
+   # mv "$fullname" cait_music || true
 done
 cd cait_music
+echo "Files in Cait music are"
 ls 
 cd ../
+echo "Files in main directory are"
 ls
