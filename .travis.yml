@@ -33,7 +33,6 @@ script:
   # - ./go-get-youtube -id=fZPgnFHeG3M -itag 38 -rename -mp3 || true
   # - ls
   - chmod +x mv_files.sh && ./mv_files.sh || true
-  - python3 send_vid_email.py || true
   - python send_vid_email.py || true
 
 # "GCS Interoperable Access Key ID"
