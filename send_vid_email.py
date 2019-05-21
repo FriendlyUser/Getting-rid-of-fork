@@ -38,6 +38,7 @@ def mp3gen():
                 yield os.path.join(root, filename)
 
 for mp3file in mp3gen():
+    print('mp3file')
     # fp = open(mp3file, 'rb')                                                    
     # vid = MIMEAudio(fp.read())
     # fp.close()
