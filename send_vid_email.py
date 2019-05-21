@@ -38,10 +38,39 @@ def mp3gen():
                 yield os.path.join(root, filename)
 
 for mp3file in mp3gen():
-    fp = open(mp3file, 'rb')                                                    
-    vid = MIMEAudio(fp.read())
-    fp.close()
-    vid.add_header('Content-ID', '<' +mp3file + '>')
-    msg.attach(vid)
+    # fp = open(mp3file, 'rb')                                                    
+    # vid = MIMEAudio(fp.read())
+    # fp.close()
+    # vid.add_header('Content-ID', '<' +mp3file + '>')
+    # msg.attach(vid)
+    
+    ##### OTHER
+    ctype, encoding = mimetypes.guess_type(mp3file)
+    if ctype is None or encoding is not None:
+        ctype = "application/octet-stream"
+
+    maintype, subtype = ctype.split("/", 1)
+
+    fileToSend = mp3file
+    if maintype == "text":
+        fp = open(fileToSend)
+        # Note: we should handle calculating the charset
+        attachment = MIMEText(fp.read(), _subtype=subtype)
+        fp.close()
+    elif maintype == "image":
+        fp = open(fileToSend, "rb")
+        attachment = MIMEImage(fp.read(), _subtype=subtype)
+        fp.close()
+    elif maintype == "audio":
+        fp = open(fileToSend, "rb")
+        attachment = MIMEAudio(fp.read(), _subtype=subtype)
+        fp.close()
+    else:
+        fp = open(fileToSend, "rb")
+        attachment = MIMEBase(maintype, subtype)
+        attachment.set_payload(fp.read())
+        fp.close()
+        encoders.encode_base64(attachment)
+    msg.add_header("Content-Disposition", "attachment", filename=fileToSend)
 
 s.send_message(msg)
