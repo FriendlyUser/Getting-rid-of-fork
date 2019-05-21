@@ -38,8 +38,8 @@ script:
 # "GCS Interoperable Access Secret"
 deploy:
   provider: gcs
-  access_key_id: $GCS_IAK_ID
-  secret_access_key: $GCS_IAS 
+  access_key_id: $ACS
+  secret_access_key: $GCS
   bucket: 254631019625
   skip_cleanup: true
   acl: public-read
