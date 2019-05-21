@@ -31,6 +31,44 @@ msg['From']=email_from
 msg['To']=email_to
 msg['Subject']="Sending Video %s" % tmmrDate
 
+
+def _get_attach_msg(path):
+    ''' make MIME type attachment message '''
+    if not os.path.isfile(path):
+        return
+    # Guess the content type based on the file's extension.  Encoding
+    # will be ignored, although we should check for simple things like
+    # gzip'd or compressed files.
+    ctype, encoding = mimetypes.guess_type(path)
+    if ctype is None or encoding is not None:
+        # No guess could be made, or the file is encoded (compressed), so
+        # use a generic bag-of-bits type.
+        ctype = 'application/octet-stream'
+    maintype, subtype = ctype.split('/', 1)
+    if maintype == 'text':
+        fp = open(path)
+        # Note: we should handle calculating the charset
+        msg = MIMEText(fp.read(), _subtype=subtype)
+        fp.close()
+    elif maintype == 'image':
+        fp = open(path, 'rb')
+        msg = MIMEImage(fp.read(), _subtype=subtype)
+        fp.close()
+    elif maintype == 'audio':
+        fp = open(path, 'rb')
+        msg = MIMEAudio(fp.read(), _subtype=subtype)
+        fp.close()
+    else:
+        fp = open(path, 'rb')
+        msg = MIMEBase(maintype, subtype)
+        msg.set_payload(fp.read())
+        fp.close()
+        # Encode the payload using Base64
+        encoders.encode_base64(msg)
+    # Set the filename parameter
+    msg.add_header('Content-Disposition', 'attachment', filename=path.split('/')[-1])
+    return msg
+
 def mp3gen():
     for root, dirs, files in os.walk('.'):
         for filename in files:
@@ -38,40 +76,7 @@ def mp3gen():
                 yield os.path.join(root, filename)
 
 for mp3file in mp3gen():
-    print('mp3file')
-    # fp = open(mp3file, 'rb')                                                    
-    # vid = MIMEAudio(fp.read())
-    # fp.close()
-    # vid.add_header('Content-ID', '<' +mp3file + '>')
-    # msg.attach(vid)
-    
-    ##### OTHER
-    ctype, encoding = mimetypes.guess_type(mp3file)
-    if ctype is None or encoding is not None:
-        ctype = "application/octet-stream"
-
-    maintype, subtype = ctype.split("/", 1)
-
-    fileToSend = mp3file
-    if maintype == "text":
-        fp = open(fileToSend)
-        # Note: we should handle calculating the charset
-        attachment = MIMEText(fp.read(), _subtype=subtype)
-        fp.close()
-    elif maintype == "image":
-        fp = open(fileToSend, "rb")
-        attachment = MIMEImage(fp.read(), _subtype=subtype)
-        fp.close()
-    elif maintype == "audio":
-        fp = open(fileToSend, "rb")
-        attachment = MIMEAudio(fp.read(), _subtype=subtype)
-        fp.close()
-    else:
-        fp = open(fileToSend, "rb")
-        attachment = MIMEBase(maintype, subtype)
-        attachment.set_payload(fp.read())
-        fp.close()
-        encoders.encode_base64(attachment)
-    msg.add_header("Content-Disposition", "attachment", filename=fileToSend)
+    print(mp3file)
+    msg.attach(_get_attach_msg(mp3file))
 
 s.send_message(msg)
