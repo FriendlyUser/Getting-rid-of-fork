@@ -40,7 +40,7 @@ deploy:
   provider: gcs
   access_key_id: $GCS
   secret_access_key: $ACS
-  bucket: 254631019625
+  bucket: cait-music
   skip_cleanup: true
   acl: public-read
   local-dir: cait_music
