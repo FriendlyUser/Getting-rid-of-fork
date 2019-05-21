@@ -13,6 +13,7 @@ from email.mime.audio import MIMEAudio
 from email.mime.application import MIMEApplication
 from email.mime.base import MIMEBase
 
+# Try again later lol
 import os
 if os.environ.get('GMAIL_USER') is not None:
     email_from = os.environ.get("GMAIL_USER")
