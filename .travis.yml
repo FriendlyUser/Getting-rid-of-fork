@@ -38,8 +38,8 @@ script:
 # "GCS Interoperable Access Secret"
 deploy:
   provider: gcs
-  access_key_id: $GCS
-  secret_access_key: $ACS
+  access_key_id: $ACS
+  secret_access_key: $GCS
   bucket: cait-music
   skip_cleanup: true
   acl: public-read
