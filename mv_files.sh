@@ -14,7 +14,7 @@ find . -type f -name "*.mp4" -print0 | while IFS= read -r -d '' fullfile;
    mp3_file="${fullfile%.*}.mp3" 
    echo "$mp3_file"
    # "ffmpeg, "-y", "-loglevel", "quiet", "-i", fname, "-vn"  mp3"
-   ffmpeg -y -loglevel quiet -i -nostdin "$fullfile" -vn "$mp3_file" 
+   ffmpeg -i "$fullfile" "$mp3_file" 
    filename2="${f1##*/}" 
    echo ${filename2}        
    # mv "$mp3_file" cait_music || true
